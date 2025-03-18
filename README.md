@@ -18,6 +18,8 @@ A Telegram bot that provides air quality information based on user location usin
 
 ## Installation
 
+### Local Installation
+
 1. Clone this repository:
    ```
    git clone https://github.com/yourusername/air_quality_bot.git
@@ -40,11 +42,43 @@ A Telegram bot that provides air quality information based on user location usin
    IQAIR_API_KEY=your_iqair_api_key
    ```
 
+### Docker Installation
+
+1. Make sure Docker and Docker Compose are installed on your system.
+
+2. Create a `.env` file with your API tokens and user configuration:
+   ```
+   BOT_TOKEN=your_telegram_bot_token
+   IQAIR_API_KEY=your_iqair_api_key
+   
+   # Docker user configuration
+   DOCKER_USER=botuser
+   DOCKER_UID=1000
+   DOCKER_GID=1000
+   ```
+
+3. Build and start the container:
+   ```
+   docker-compose up -d
+   ```
+
+4. Check the logs:
+   ```
+   docker-compose logs -f
+   ```
+
 ## Usage
 
 1. Run the bot:
+
+   **Local:**
    ```
    python main.py
+   ```
+   
+   **Docker:**
+   ```
+   docker-compose up -d
    ```
 
 2. Open Telegram and start a chat with your bot.
@@ -65,6 +99,7 @@ A Telegram bot that provides air quality information based on user location usin
 ## Commands
 
 - `/start` - Start the bot and share your location
+- `/refresh` - Get updated air quality data for your last shared location
 - `/help` - Show help information
 
 ## License

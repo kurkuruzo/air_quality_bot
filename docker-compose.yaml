@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USER_NAME=${DOCKER_USER}
+        - USER_ID=${DOCKER_UID}
+        - GROUP_ID=${DOCKER_GID}
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./app:/app/app
+      - ./main.py:/app/main.py
+    user: ${DOCKER_UID}:${DOCKER_GID}
+    container_name: air_quality_bot
+    networks:
+      - airbot_network
+
+networks:
+  airbot_network:
+    name: airbot_network
+    driver: bridge
